@@ -1,0 +1,20 @@
+name: Docker Build
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: actions/checkout@v3
+
+    - name: Build Docker Image
+      run: docker build -t qr-code-generator-app .
+
+    - name: Run container test
+      run: docker run --rm qr-code-generator-app
